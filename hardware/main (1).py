@@ -1,30 +1,4 @@
-# Windows Installation ::::
-
-# Step 1: $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\daksh\Desktop\Pratyaksh\key.json"
-# Step 2: Create a Virtual Environment :-
-# 1. pip install virtualenv
-# 2. python -m venv venv
-# 3. venv\Scripts\activate
-# Step 3: pip install --upgrade google-cloud-speech
-# Step 4: gcloud init
-
-# Linux Installation ::::
-
-# Step 1: export GOOGLE_APPLICATION_CREDENTIALS="./key.json"
-# Step 2: Create a Virtual Environment :-
-# 1. pip install virtualenv
-# 2. virtualenv venv
-# 3. source venv/bin/activate
-# Step 3: pip install --upgrade google-cloud-speech
-# Step 4: gcloud init
-
-
-# -------------------------------------------------->>
-# New algorithm for display on OLED display
-
-
-
-
+#source venv/bin/activate
 
 
 import os

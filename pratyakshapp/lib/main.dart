@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pratyakshapp/home_page.dart';
+// import 'package:myapp/touchpad_screen.dart';
 import 'package:pratyakshapp/welcome_screen.dart';
+import 'package:pratyakshapp/home_page.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       title: 'App for deaf',
       theme: ThemeData(primarySwatch: Colors.teal),
       home: screen,
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

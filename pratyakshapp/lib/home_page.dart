@@ -58,6 +58,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _onBottomNavigationBarTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,41 +81,72 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.cloud_upload_outlined),
             onPressed: () {
-              _showBottomSheet(
-                  context); //REQUIRED to Pass the BuildContext to the function
+              _showBottomSheet(context);
             },
           ),
         ],
       ),
-      body: _currentIndex == 0
-          ? _buildHomeContent()
-          : _currentIndex == 1
-              ? AboutPage()
-              : SettingsPage(),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Color.fromARGB(255, 65, 227, 168),
-        unselectedItemColor: Colors.white,
-        currentIndex: _currentIndex,
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
+      body: Navigator(
+        onGenerateRoute: (RouteSettings settings) {
+          return PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              if (_currentIndex == 0) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: _buildHomeContent(),
+                );
+              } else if (_currentIndex == 1) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: AboutPage(),
+                );
+              } else {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(-1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: SettingsPage(),
+                );
+              }
+            },
+          );
         },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+      ),
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: Color.fromARGB(255, 67, 67, 67),
+          labelTextStyle: MaterialStatePropertyAll(
+            TextStyle(color: Colors.white)
+          )
+        ),
+        child: NavigationBar(
+          backgroundColor: Colors.black,
+          // selectedItemColor: Color.fromARGB(255, 65, 227, 168),
+          // unselectedItemColor: Colors.white,
+          selectedIndex: _currentIndex,
+          onDestinationSelected: _onBottomNavigationBarTapped,
+          destinations: [
+            NavigationDestination(
+              icon: Icon(Icons.home_outlined, color: Colors.white,),
+              label: 'Home',
+              selectedIcon: Icon(Icons.home, color: Colors.white,),
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.info_outline, color: Colors.white,),
+              label: 'About',
+              selectedIcon: Icon(Icons.info, color: Colors.white,),
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.settings_outlined, color: Colors.white,),
+              label: 'Settings',
+              selectedIcon: Icon(Icons.settings, color: Colors.white,),
+            ),
+          ],
+        ),
       ),
     );
   }

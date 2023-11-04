@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'about_page.dart';
 import 'settings_page.dart';
+import 'bottom_sheet_content.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +47,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+      builder: (BuildContext context) {
+        return BottomSheetContent();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +71,15 @@ class _HomePageState extends State<HomePage> {
             color: Color.fromARGB(255, 65, 227, 168),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.cloud_upload_outlined),
+            onPressed: () {
+              _showBottomSheet(
+                  context); //REQUIRED to Pass the BuildContext to the function
+            },
+          ),
+        ],
       ),
       body: _currentIndex == 0
           ? _buildHomeContent()
@@ -110,6 +131,22 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 8.0, 8.0, 8.0),
+              child: Text(
+                'Hey Mukund,',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  wordSpacing: 2,
+                  fontSize: 37,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: tasks.length,
@@ -154,7 +191,15 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             margin: EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: Colors.black,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(255, 65, 227, 168).withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 35,
+                  offset: Offset(0, 0),
+                ),
+              ],
+              color: Colors.black87,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -174,7 +219,10 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: _addTask,
-                  child: Icon(Icons.add),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.black,
+                  ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 65, 227, 168),

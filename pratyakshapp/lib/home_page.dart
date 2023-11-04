@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DeafApp',
+      title: 'Pratyaksh AR',
       home: HomePage(ipAddress: '127.0.0.1'), // Example IP address
     );
   }
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
       builder: (BuildContext context) {
-        return BottomSheetContent();
+        return BottomSheetContent(tasks: tasks, ipAddress: widget.ipAddress);
       },
     );
   }
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(
-          'DeafApp',
+          'Pratyaksh AR',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -86,36 +86,30 @@ class _HomePageState extends State<HomePage> {
           : _currentIndex == 1
               ? AboutPage()
               : SettingsPage(),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(12.0),
-          topRight: Radius.circular(12.0),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.black,
-          selectedItemColor: Color.fromARGB(255, 65, 227, 168),
-          unselectedItemColor: Colors.white,
-          currentIndex: _currentIndex,
-          onTap: (int index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.info),
-              label: 'About',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
+        selectedItemColor: Color.fromARGB(255, 65, 227, 168),
+        unselectedItemColor: Colors.white,
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
       ),
     );
   }
@@ -139,6 +133,7 @@ class _HomePageState extends State<HomePage> {
                 'Hey Mukund,',
                 textAlign: TextAlign.left,
                 style: TextStyle(
+                  fontFamily: 'Nunito',
                   wordSpacing: 2,
                   fontSize: 37,
                   fontWeight: FontWeight.bold,
@@ -151,36 +146,33 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.black45,
-                    margin: EdgeInsets.all(10),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.voice_chat,
-                            color: Color.fromARGB(255, 65, 227, 168),
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  color: Colors.black45,
+                  margin: EdgeInsets.all(10),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.voice_chat,
+                          color: Color.fromARGB(255, 65, 227, 168),
+                        ),
+                        Expanded(
+                          child: Text(
+                            ' ${tasks[index]}',
+                            style:
+                                TextStyle(fontSize: 18, color: Colors.white),
                           ),
-                          Expanded(
-                            child: Text(
-                              ' ${tasks[index]}',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () => _deleteTask(index),
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () => _deleteTask(index),
+                          color: Colors.red,
+                        ),
+                      ],
                     ),
                   ),
                 );

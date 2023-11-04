@@ -20,6 +20,8 @@
 
 
 # -------------------------------------------------->>
+# New algorithm for display on OLED display
+
 
 
 import os
@@ -33,10 +35,8 @@ from luma.core.render import canvas
 from luma.oled.device import ssd1306
 from textwrap import wrap
 from google.cloud import speech_v1p1beta1 as speech
-from websockets import serve
-import asyncio
-import threading
-
+from PIL import ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 
 
@@ -47,7 +47,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
 serial = i2c(port=1, address=0x3C)
 device = ssd1306(serial, width=128, height=64)
 
-
+font = ImageFont.truetype("./Paul-le1V.ttf", 20)
 
 
 def transcribe_audio_stream():
@@ -57,7 +57,7 @@ def transcribe_audio_stream():
         config=speech.RecognitionConfig(
             encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
             sample_rate_hertz=14100,  # Adjust this based on your microphone
-            language_code="en-US",
+            language_code="en-IN",
             model="default",
         ),
         interim_results=True,
@@ -78,41 +78,27 @@ def transcribe_audio_stream():
                 if(result.is_final):
                     current_len=0
                     new_char=" "
-                    time.sleep(2)
+                    #time.sleep(1)
+                    draw.rectangle(device.bounding_box, outline="black", fill="black")
                     print("\033[K\r",end='')
-      
-                if(len(new_char)>current_len):
-                    current_len=len(new_char)
-                    print("\033[K\rTranscript: {}".format(new_char), end='', flush=True)
-                    with canvas(device) as draw:
+                else:
+                    if(len(new_char)>current_len and result.stability>0.3):
+                        current_len=len(new_char)
+                        print("\033[K\rTranscript: {}".format(new_char), end='', flush=True)
+                        with canvas(device) as draw:
                         
-                        wrapped_lines=wrap(new_char,width=20)
-                        y=5
-                        for line in wrapped_lines:
-                            draw.text((5,y),line,fill="white")
-                            if(y+12>64):
-                                y=0
-                                draw.rectangle(device.bounding_box, outline="black", fill="black")
-                            else:
-                                y+=12
-                    if(result.is_final):
-                        current_len=0
-                        new_char=" "
-                        time.sleep(2)
-                        print("\033[K\r",end='')
-                            
-                
-                            
-                            
-async def websocket_server(websocket, path):
-    while True:
-        try:
-            data = await websocket.recv()
-            print(f"Received data: {data}")
-            received_data.append(data)  # Store the received JSON data in the received_data list
-        except websockets.exceptions.ConnectionClosedOK:
-            break
-
+                            wrapped_lines=wrap(new_char,width=16)
+                            y=4
+                            for line in wrapped_lines:
+                                if(y+12>45):
+                                    y=4
+                                    draw.rectangle(device.bounding_box, outline="black", fill="black")
+                                    draw.text((4,y),line,fill="white", font=font)
+                                    y+=13
+                                else:
+                                    draw.text((4,y),line,fill="white", font=font)
+                                    y+=12
+              
 
 
 class MicrophoneStream:
@@ -143,7 +129,5 @@ class MicrophoneStream:
             yield chunk
 
 if __name__ == "__main__":
-    transcription_thread = threading.Thread(target=transcribe_audio_stream)
-  # Allow the thread to exit when the main program exits
-    transcription_thread.start()
-    asyncio.get_event_loop().run_until_complete(serve(websocket_server, '0.0.0.0', 8765))
+    transcribe_audio_stream()
+  

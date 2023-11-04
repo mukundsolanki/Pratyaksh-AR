@@ -21,14 +21,33 @@
 
 # -------------------------------------------------->>
 
-import io
+
 import os
-from google.cloud import speech_v1p1beta1 as speech
+import time
 import pyaudio
+
 import difflib
+import textwrap
+from luma.core.interface.serial import i2c
+from luma.core.render import canvas
+from luma.oled.device import ssd1306
+from textwrap import wrap
+from google.cloud import speech_v1p1beta1 as speech
+from websockets import serve
+import asyncio
+import threading
+
+
+
 
 # Set Google Cloud credentials environment variable
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
+
+# Initialize the OLED display
+serial = i2c(port=1, address=0x3C)
+device = ssd1306(serial, width=128, height=64)
+
+
 
 
 def transcribe_audio_stream():
@@ -39,35 +58,60 @@ def transcribe_audio_stream():
             encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
             sample_rate_hertz=14100,  # Adjust this based on your microphone
             language_code="en-US",
-            enable_automatic_punctuation=True,
+            model="default",
         ),
         interim_results=True,
     )
 
     current_transcript = []  # Initialize the current transcript as an empty list
 
-    with MicrophoneStream(sampling_rate=16000, chunk_size=1024) as stream:
-        
+    current_len=0
+    with MicrophoneStream(sampling_rate=14100, chunk_size=1024) as stream:
         audio_generator = stream.generator()
         requests = (speech.StreamingRecognizeRequest(audio_content=content) for content in audio_generator)
-        responses = client.streaming_recognize(config=streaming_config, requests=requests)
 
-        for response in responses:
+        for response in client.streaming_recognize(config=streaming_config, requests=requests):
             for result in response.results:
                 new_transcript = result.alternatives[0].transcript
                 words = new_transcript.split()
-                # check the difference between current_transcript and result received
-                diff = difflib.unified_diff(current_transcript, words, lineterm='', fromfile='current', tofile='new')
-                diff = list(diff)
-
-                # If major difference then add
-                if (len(diff) > 2 ):  # Check if there are more than two lines of differences
-                    current_transcript = words
+                new_char=" ".join(words) 
+                if(result.is_final):
+                    current_len=0
+                    new_char=" "
+                    time.sleep(2)
+                    print("\033[K\r",end='')
+      
+                if(len(new_char)>current_len):
+                    current_len=len(new_char)
+                    print("\033[K\rTranscript: {}".format(new_char), end='', flush=True)
+                    with canvas(device) as draw:
+                        
+                        wrapped_lines=wrap(new_char,width=20)
+                        y=5
+                        for line in wrapped_lines:
+                            draw.text((5,y),line,fill="white")
+                            if(y+12>64):
+                                y=0
+                                draw.rectangle(device.bounding_box, outline="black", fill="black")
+                            else:
+                                y+=12
+                    if(result.is_final):
+                        current_len=0
+                        new_char=" "
+                        time.sleep(2)
+                        print("\033[K\r",end='')
+                            
                 
-                # \033 will clear the output lines and print the latest line to avoid printing the same words over and over
-                print("\033[K\rTranscript: {}".format(" ".join(current_transcript)), end='', flush=True)
-
-
+                            
+                            
+async def websocket_server(websocket, path):
+    while True:
+        try:
+            data = await websocket.recv()
+            print(f"Received data: {data}")
+            received_data.append(data)  # Store the received JSON data in the received_data list
+        except websockets.exceptions.ConnectionClosedOK:
+            break
 
 
 
@@ -99,4 +143,7 @@ class MicrophoneStream:
             yield chunk
 
 if __name__ == "__main__":
-    transcribe_audio_stream()
+    transcription_thread = threading.Thread(target=transcribe_audio_stream)
+  # Allow the thread to exit when the main program exits
+    transcription_thread.start()
+    asyncio.get_event_loop().run_until_complete(serve(websocket_server, '0.0.0.0', 8765))

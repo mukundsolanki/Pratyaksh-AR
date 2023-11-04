@@ -51,8 +51,7 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30))
-      ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
       builder: (BuildContext context) {
         return BottomSheetContent();
       },
@@ -76,7 +75,8 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.cloud_upload_outlined),
             onPressed: () {
-              _showBottomSheet(context); //REQUIRED to Pass the BuildContext to the function
+              _showBottomSheet(
+                  context); //REQUIRED to Pass the BuildContext to the function
             },
           ),
         ],
@@ -175,6 +175,14 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             margin: EdgeInsets.all(18),
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(255, 65, 227, 168).withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 15,
+                  offset: Offset(0, 0),
+                ),
+              ],
               color: Colors.black,
               borderRadius: BorderRadius.circular(20),
             ),

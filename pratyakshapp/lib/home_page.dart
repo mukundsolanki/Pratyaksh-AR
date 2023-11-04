@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     String task = _taskController.text;
     if (task.isNotEmpty) {
       setState(() {
-        tasks.add(task);
+        tasks.insert(0, task); // Insert task at the beginning of the list
         _taskController.clear();
       });
     }
@@ -45,58 +45,66 @@ class _HomePageState extends State<HomePage> {
             colors: [Colors.black, Color.fromARGB(255, 49, 49, 49)],
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 20),
-              Container(
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 200,
-                      child: TextField(
-                        controller: _taskController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: 'Enter your task',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: InputBorder.none,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                reverse: false, // Reverses the order of items in the list
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Card(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '- ${tasks[index]}',
+                          style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: _addTask,
-                      child: Icon(Icons.add),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.green),
-                            shape: MaterialStateProperty.all<OutlinedBorder>(CircleBorder()),
+                  );
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _taskController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: 'Enter your task',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: InputBorder.none,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: _addTask,
+                    child: Icon(Icons.add),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        CircleBorder(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: tasks.map((task) {
-                  return Text(
-                    '- $task',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -50,6 +50,9 @@ class _HomePageState extends State<HomePage> {
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30))
+      ),
       builder: (BuildContext context) {
         return BottomSheetContent();
       },

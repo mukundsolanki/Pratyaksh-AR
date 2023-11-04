@@ -27,21 +27,27 @@ class BottomSheetContent extends StatelessWidget {
                 Center(
                   child: Text(
                     'Sync with AR Glasses',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
+
                 SizedBox(height: 20),
-                // Add more widgets
+
                 Center(
                   child: SvgPicture.asset(
                     'assets/ar_glasses_upload.svg',
                     height: 225,
                   ),
                 ),
+
+                SizedBox(height: 12),
+
                 SlideAction(
+                  text: 'Slide to Sync!',
                   sliderRotate: false,
                   onSubmit: () {
-                    print("Swiped");
+                    // print("Swiped");
+                    Navigator.pop(context);
                   },
                 ),
               ],

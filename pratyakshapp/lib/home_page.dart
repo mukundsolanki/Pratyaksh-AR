@@ -138,7 +138,8 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 'Hey Mukund,',
                 textAlign: TextAlign.left,
-                style: TextStyle(wordSpacing: 2,
+                style: TextStyle(
+                  wordSpacing: 2,
                   fontSize: 37,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -194,11 +195,11 @@ class _HomePageState extends State<HomePage> {
                 BoxShadow(
                   color: Color.fromARGB(255, 65, 227, 168).withOpacity(0.2),
                   spreadRadius: 2,
-                  blurRadius: 15,
+                  blurRadius: 35,
                   offset: Offset(0, 0),
                 ),
               ],
-              color: Colors.black,
+              color: Colors.black87,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -218,7 +219,10 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: _addTask,
-                  child: Icon(Icons.add),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.black,
+                  ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                       Color.fromARGB(255, 65, 227, 168),

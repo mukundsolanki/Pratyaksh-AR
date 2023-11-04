@@ -23,6 +23,12 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void _deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index); // Remove task at the specified index
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,18 +55,37 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               child: ListView.builder(
-                reverse: false, // Reverses the order of items in the list
                 itemCount: tasks.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Card(
-                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.black45,
+                      margin: EdgeInsets.all(10),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '- ${tasks[index]}',
-                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.voice_chat,
+                              color: Color.fromARGB(255, 65, 227, 168),
+                            ),
+                            Expanded(
+                              child: Text(
+                                ' ${tasks[index]}',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () => _deleteTask(index),
+                              color: Colors.red,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -83,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                       controller: _taskController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintText: 'Enter your task',
+                        hintText: 'Enter your Wake Word',
                         hintStyle: TextStyle(color: Colors.grey),
                         border: InputBorder.none,
                       ),
@@ -95,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     child: Icon(Icons.add),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
+                          MaterialStateProperty.all<Color>(Color.fromARGB(255, 65, 227, 168),),
                       shape: MaterialStateProperty.all<OutlinedBorder>(
                         CircleBorder(),
                       ),

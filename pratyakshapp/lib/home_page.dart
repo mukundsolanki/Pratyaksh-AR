@@ -131,6 +131,21 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Column(
         children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 8.0, 8.0, 8.0),
+              child: Text(
+                'Hey Mukund,',
+                textAlign: TextAlign.left,
+                style: TextStyle(wordSpacing: 2,
+                  fontSize: 37,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: tasks.length,

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class BottomSheetContent extends StatelessWidget {
-
   final List<String> tasks;
   final String ipAddress;
 
-  BottomSheetContent({required this.tasks , required this.ipAddress});
+  BottomSheetContent({required this.tasks, required this.ipAddress});
 
   void _sendTasksToServer() {
     final channel = IOWebSocketChannel.connect('ws://$ipAddress:5000');
@@ -45,7 +45,6 @@ class BottomSheetContent extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-
                 Center(
                   // child: SvgPicture.asset(
                   //   'assets/ar_glasses_upload.svg',
@@ -58,9 +57,7 @@ class BottomSheetContent extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-
                 SizedBox(height: 12),
-
                 SlideAction(
                   sliderButtonIcon: Icon(Icons.arrow_right),
                   text: 'Slide to Sync!',
@@ -73,6 +70,12 @@ class BottomSheetContent extends StatelessWidget {
                     // print("Swiped");
                     _sendTasksToServer();
                     Navigator.pop(context);
+                    Fluttertoast.showToast(
+                        msg: "Syncing...",
+                        toastLength: Toast.LENGTH_LONG,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   },
                 ),
               ],

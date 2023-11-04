@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                     begin: Offset(-1.0, 0.0),
                     end: Offset.zero,
                   ).animate(animation),
-                  child: SettingsPage(),
+                  child: SettingsPage(ipAddress: widget.ipAddress),
                 );
               }
             },

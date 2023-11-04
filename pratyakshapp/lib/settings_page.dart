@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:web_socket_channel/io.dart';
 
 class SettingsPage extends StatelessWidget {
+  final String ipAddress;
+  SettingsPage({required this.ipAddress});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +51,13 @@ class SettingsPage extends StatelessWidget {
                       child: CircularPercentIndicator(
                         radius: 100,
                         lineWidth: 20,
-                        percent: 0.69,
+                        percent: 0.70,
                         progressColor: Color.fromARGB(255, 65, 227, 168),
                         arcType: ArcType.FULL,
                         arcBackgroundColor: Color.fromARGB(255, 54, 54, 54),
                         circularStrokeCap: CircularStrokeCap.round,
                         center: Text(
-                          '69%',
+                          '70%',
                           style: TextStyle(fontSize: 30, color: Colors.white),
                         ),
                       ),
@@ -61,7 +65,7 @@ class SettingsPage extends StatelessWidget {
                     _buildInfoRow("Device Name", "Pratyaksh AR"),
                     _buildInfoRow("Connectivity Status", "Connected"),
                     _buildInfoRow("Device Firmware", "v1.0.0"),
-                    _buildInfoRow("IP Address", "192.168.1.1"),
+                    _buildInfoRow("IP Address", ipAddress),
                     _buildInfoRow("MAC Address", "AA:BB:CC:DD:EE:FF"),
                     SizedBox(width: 10),
                     _buildUnlinkButton(),
@@ -72,6 +76,13 @@ class SettingsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showDialog(context, ipAddress); // Function to show the dialog box
+        },
+        child: Icon(Icons.translate),
+        backgroundColor: Color.fromARGB(255, 65, 227, 168),
       ),
     );
   }
@@ -133,5 +144,48 @@ Widget _buildUnlinkButton() {
         ),
       ),
     ),
+  );
+}
+
+void _showDialog(BuildContext context, String ipAddress) {
+  String? selectedOption = 'English'; // Initial selected option as nullable
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Select an Language"),
+        content: DropdownButton<String>(
+          value: selectedOption,
+          onChanged: (String? newValue) {
+            if (newValue != null) {
+              selectedOption = newValue;
+            }
+          },
+          items: <String>['English', 'हिन्दी', 'मराठी']
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text("Close"),
+            onPressed: () {
+              if (selectedOption != null) {
+                print('Selected Option: $selectedOption');
+                final channel =
+                    IOWebSocketChannel.connect('ws://$ipAddress:5000');
+                channel.sink.add(selectedOption);
+                channel.sink.close();
+              }
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
   );
 }

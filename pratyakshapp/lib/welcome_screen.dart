@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final Function(String) onIPSubmit;
@@ -66,9 +67,7 @@ class WelcomeScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        SizedBox(
-                            width:
-                                20.0),
+                        SizedBox(width: 20.0),
                         // Button
                         CircleAvatar(
                           backgroundColor: Colors.white,
@@ -76,6 +75,12 @@ class WelcomeScreen extends StatelessWidget {
                           child: IconButton(
                             onPressed: () {
                               onIPSubmit(ipAddress);
+                              Fluttertoast.showToast(
+                                  msg: "Connected Sucessfully",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
                             },
                             icon: Icon(
                               Icons.arrow_forward,

@@ -1,35 +1,19 @@
-import paramiko
+# Works on pi (Checked)
 
-# Define your Raspberry Pi's hostname or IP address, username, and password
-raspi_host = "raspberrypi"
-raspi_username = "pi"
-raspi_password = "raspberry"
+# Step 1: chmod +x set_audio_hat.py
+# Step 2: sudo ./set_audio_hat.py
 
-# Define the command to set the audio output to the HAT
-audio_command = "sudo raspi-config nonint do_audio 0"
 
-# Create an SSH client instance
-ssh_client = paramiko.SSHClient()
-ssh_client.load_system_host_keys()
-ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+import subprocess
 
-try:
-    # Connect to the Raspberry Pi
-    ssh_client.connect(hostname=raspi_host, username=raspi_username, password=raspi_password)
+# Check if the script is run with superuser privileges
+if not subprocess.call(["sudo", "true"]):
+    # Use raspi-config non-interactively to set the audio output to the HAT
+    command = "sudo raspi-config nonint do_audio 0"
+    subprocess.call(command, shell=True)
 
-    # Run the audio configuration command
-    stdin, stdout, stderr = ssh_client.exec_command(audio_command)
-    
-    # Wait for the command to finish
-    stdout.channel.recv_exit_status()
-
-    # Reboot the Raspberry Pi to apply the changes
-    reboot_command = "sudo reboot"
-    ssh_client.exec_command(reboot_command)
-
-    print("Audio configuration set to HAT. Raspberry Pi will reboot to apply the changes.")
-except Exception as e:
-    print(f"Error: {e}")
-finally:
-    ssh_client.close()
-
+    # Reboot to apply the changes
+    print("Rebooting the Raspberry Pi to apply audio settings...")
+    subprocess.call("sudo reboot", shell=True)
+else:
+    print("Please run this script with superuser privileges (sudo).")

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'about_page.dart';
 import 'settings_page.dart';
+import 'bottom_sheet_content.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +47,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return BottomSheetContent();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +69,14 @@ class _HomePageState extends State<HomePage> {
             color: Color.fromARGB(255, 65, 227, 168),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.cloud_upload_outlined),
+            onPressed: () {
+              _showBottomSheet(context); //REQUIRED to Pass the BuildContext to the function
+            },
+          ),
+        ],
       ),
       body: _currentIndex == 0
           ? _buildHomeContent()

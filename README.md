@@ -28,18 +28,9 @@ We have created smart AR glasses for people with Hearing disabilities which help
 ### Our Solution
 - Low latency Speech-To-Text using Google Cloud STT API with an accuracy of 98% (Statista: WER of 2%)
 - Multi-lingual with support of over 100 language pairs.
-- Cost efficient with a cost of around 3,000 Rs, which is <10% of the competition.
+- Cost efficient with a cost of around 3,000 Rs, which is <10% of the competition available in market.
 - Speaker diarization for easy differentiation between speakers.
 - CUSTOM BOOSTER KEYWORDS to make people completely independent by making a real-time keyword alert system.
-
-### Economization
-
-- Our product costs just 9.8% of what our competitors do. (XRAI AR glasses)
-- XRAI AR glasses cost 30,000Rs+ vs Pratyaksh which costs around 3000Rs.
-- The popular subscription for XRAI glasses is 5,357Rs per month whereas Pratyaksh costs around 1,200Rs per month with a 3-month free trial.
-- XRAI AR is based on Nreal Air glasses, which leads to poor aftersales services by XRAI AR.
-
-
 
 ### Feasibility
 

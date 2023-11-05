@@ -1,14 +1,18 @@
-# Pratत्यक्ष - Argumental Reality Glasses for Hearing Disabilities
+# Pratyaksh AR - Landing Page
 
 This folder contains the code for the landing page of Pratyaksh AR Landing Website, an innovative solution designed to enhance the lives of individuals with hearing disabilities. Pratyaksh is a set of argumental reality glasses that aims to bridge the communication gap for those with hearing impairments.
 
 # Live Demo
 
-[LIVE]('https://www.pratyakshar.co')
+You can check the live Demo of the website [HERE](https://www.pratyakshar.co)
+
+# GoDaddy Domain Name:
+
+We claimed the GoDaddy Domain name for our `pratyaksh.co` and we used `vercel` to deploy.
 
 ## Table of Contents
 
-- [Homepage](#https://www.pratyakshar.co/#home)
+- [Homepage](https://www.pratyakshar.co/#home)
 - [About](https://www.pratyakshar.co/#about)
 - [Pricing](https://www.pratyakshar.co/#pricing)
 - [Download](https://www.pratyakshar.co/#download)
@@ -43,4 +47,6 @@ cd webpage
 
 
 ## File Structure:
+
+![FS](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/cd3ebcad-baf3-40ee-bdc0-bbece013d94b)
 

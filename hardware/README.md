@@ -10,9 +10,7 @@ This is a brief guide to Pratyaksh's hardware and the code that's required to ru
 
 
 
-
-![App Screenshot](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/blob/main/hardware/Screenshot%20(1).png)
-
+![Diagram](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/97655058/0719e70c-3c84-45e7-984e-b71b752dab4e)
 
 ## GPIO Connection
 

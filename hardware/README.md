@@ -1,7 +1,7 @@
 
 # Pratyaksh Hardware
 
-This is a brief guide of Pratyaksh's hardware and the code that's required to run it.
+This is a brief guide to Pratyaksh's hardware and the code that's required to run it.
 
 
 
@@ -11,7 +11,7 @@ This is a brief guide of Pratyaksh's hardware and the code that's required to ru
 
 
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/blob/main/hardware/Screenshot%20(1).png)
 
 
 ## GPIO Connection

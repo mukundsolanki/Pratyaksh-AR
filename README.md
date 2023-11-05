@@ -1,7 +1,7 @@
-
-
-
 # Pratyaksh AR
+
+![Banner](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/a1491e25-3c20-4d37-b311-fbdd9ce73724)
+
 
 ### Team Name: SyntaxSorcerers
 ### Team Number: 6167

@@ -16,7 +16,6 @@ You can download the .apk file from [here]()
 
 ## Installation
 
-
 To begin using Pratyaksh Application, follow these steps:
 
 1. **Clone the Repository:**
@@ -41,6 +40,7 @@ flutter run
 
 ## SCREENSHOTS :
 
+![Untitled design (1)](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/9d6244c0-91f3-486d-8c90-601a8cec80ce)
 
 # How does it works?
 

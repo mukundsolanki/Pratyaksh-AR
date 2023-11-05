@@ -4,7 +4,7 @@ This folder contains the source code and documentation for our innovative Augmen
 
 ## Features:
 
-- User can easily connect with their Unique code or Glasses IP Address.
+- User can easily connect with their Unique code(IP ADDRESS) or Glasses IP Address.
 - Seamless integration with AR glasses for a hands-free experience.
 - Cross-platform mobile application for managing AR glasses settings.
 - Intuitive user interface for easy customization and control.
@@ -12,7 +12,7 @@ This folder contains the source code and documentation for our innovative Augmen
 
 ## Apk file:
 
-You can download the .apk file from [here]()
+You can download the .apk file from [here](https://drive.google.com/drive/folders/1EDrFVWcLNQr0qLjN7hPhHLcphSdqMFdY?usp=drive_link)
 
 ## Installation
 
@@ -40,7 +40,7 @@ flutter run
 
 ## SCREENSHOTS :
 
-![Untitled design (1)](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/9d6244c0-91f3-486d-8c90-601a8cec80ce)
+![App UI Design](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/9d6244c0-91f3-486d-8c90-601a8cec80ce)
 
 # How does it works?
 

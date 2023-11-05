@@ -4,7 +4,7 @@ This folder contains the code for the landing page of Pratyaksh AR Landing Websi
 
 # Live Demo
 
-[Pratyaksh]('https://www.pratyakshar.co')
+[LIVE]('https://www.pratyakshar.co')
 
 ## Table of Contents
 

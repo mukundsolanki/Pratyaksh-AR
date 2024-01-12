@@ -46,7 +46,7 @@ flutter run
 
 1. **Connect AR Glasses:**
 
-   Power on your AR glasses and establish a connection with the HearClearly mobile application via Bluetooth or Wi-Fi. Entering the Unique code provided with each pair of AR Glasses.
+   Power on your AR glasses and establish a connection with the Pratyaksh mobile application via Bluetooth or Wi-Fi. Entering the Unique code provided with each pair of AR Glasses.
 
 2. **Launch the Pratyaksh App:**
 

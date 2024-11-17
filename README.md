@@ -2,65 +2,59 @@
 
 ![Banner](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/114515612/a1491e25-3c20-4d37-b311-fbdd9ce73724)
 
-
-### Team Name: SyntaxSorcerers
-### Team Number: 6167
-
-## Problem Statement
-
-A significant portion of the population faces difficulties in accessing information, communicating, and participating in daily activities due to physical or sensory limitations. Existing technologies, while helpful, may lack customization and the ability to seamlessly integrate with various aspects of life. Create a solution that can work together with the user to eliminate this problem.
-
-## Solution
+Pratyaksh AR is an open-source project aimed at empowering individuals with hearing disabilities by offering a cost-efficient and technologically advanced solution. Our smart AR glasses enable real-time speech-to-text transcription in over 100 language pairs and feature custom keyword alerts, ensuring inclusivity in conversations and public announcements.
 
 We have created smart AR glasses for people with Hearing disabilities which helps them in conversation as lip-reading alone is not enough to participate in group conversation therefore we have created real-time speech-to-text transcription in more than 100 language pairs. The biggest drawback we realized in the lives of the hearing impaired is not being able to listen to announcements, their name, and people out of their vision, So we have created CUSTOM BOOSTER KEYWORDS which will alert the user whenever that word is encountered.
 
-### Target Audience (incurable hearing disabilities)
+### 🧑‍🤝‍🧑 Target Audience (incurable hearing disabilities)
 - Presbycusis
 - Traumatic Brain Injuries (Damage to ear drum)
 - Sensorineural Hearing Loss
 - Congenital Hearing Loss
 
+## 🌟 Key Features  
+
+- **🔊 Real-time Speech-to-Text:** Powered by Google Cloud STT API with 98% accuracy.  
+- **🌐 Multi-Language Support:** Supports over 100 language pairs.  
+- **⚡ Custom Booster Keywords:** Alerts users when specific words (e.g., their name) are detected.  
+- **👥 Speaker Diarization:** Differentiates between speakers in group conversations.  
+- **💸 Cost-Efficient Design:** Around ₹3,000, less than 10% of existing market solutions.  
+
 
 ### Future aspects
-- WHO estimates hearing loss poses an annual global cost of US$ 980 billion.
+- WHO estimates hearing loss results in an annual global cost of $980 billion.
 - Over 1 billion young adults are at risk of permanent hearing loss.
+- Only 5% of Indian children with hearing disabilities attend school. Pratyaksh AR can bridge this gap by supporting higher education accessibility.
 
-### Our Solution
-- Low latency Speech-To-Text using Google Cloud STT API with an accuracy of 98% (Statista: WER of 2%)
-- Multi-lingual with support of over 100 language pairs.
-- Cost efficient with a cost of around 3,000 Rs, which is <10% of the competition available in market.
-- Speaker diarization for easy differentiation between speakers.
-- CUSTOM BOOSTER KEYWORDS to make people completely independent by making a real-time keyword alert system.
+## 🎯 Contribution Guide
 
-### Feasibility
+We welcome contributions from the community to enhance Pratyaksh AR. Here's how you can get started:
 
-- Special children after basic education and learning to read and write in special schools can use PRATYAKSH to continue their higher education normally as just 5% of Indian children with hearing disabilities attend school. 
-- According to the WHO hearing disability is the most common form of sensory deficit.
+- Create your copy of the project.
+- Follow the installation instructions in the pratyakshapp directory.
+- Check for open issues and feature requests.
+- Once you’ve made changes, submit a pull request with a detailed explanation.
+- Share ideas, report bugs, and suggest improvements in the Issues.
 
+## 📁 Project Structure
 
-## PPT
-[Pratyaksh PPT](https://www.canva.com/design/DAFzNq912yc/LQ_OfxHv10MYXo2DzQd67w/edit?utm_content=DAFzNq912yc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- `hardware/`
+  Contains schematics, PCB designs, and related hardware configurations.
 
+- `pratyakshapp/`
+  Houses the mobile app code for managing AR glasses functionality.
 
-## Mathematical Research
-
-![Ray Diagram](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/97655058/104e61b0-8645-47a2-9250-c0aaebb87b6c)
-
-
-![Calculation for best viewing distance](https://github.com/mukundsolanki/HackCBS-Pratyaksh-AR/assets/97655058/96ffb9dc-dbed-4e04-a694-59e52abdc2ba)
-
-
-## Team Members
-
-
-[@Mukund Solanki (Team Lead)](https://github.com/mukundsolanki)
-[@Daksh Kitukale](https://github.com/K-Daksh)
-[@Gyaneshwar Chaudhary](https://github.com/gyaneshwarchoudhary)
-
-## Branch Structure
-
-We have maintained a single branch `main` will all the commits from the team, it contains 3 directories hardware, pratyakshapp, and webpage.
+- `webpage/`
+  Includes the web-based dashboard for configuration and management.
 
 ### Demo Video and Sample Images
 
 [Demo videos, application and images of the product](https://drive.google.com/drive/folders/1EDrFVWcLNQr0qLjN7hPhHLcphSdqMFdY?usp=drive_link)
+
+[Pratyaksh PPT](https://www.canva.com/design/DAFzNq912yc/LQ_OfxHv10MYXo2DzQd67w/edit?utm_content=DAFzNq912yc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+# 🗿 Contributors
+
+[@Mukund Solanki (Team Lead)](https://github.com/mukundsolanki)
+[@Daksh Kitukale](https://github.com/K-Daksh)
+[@Gyaneshwar Chaudhary](https://github.com/gyaneshwarchoudhary)

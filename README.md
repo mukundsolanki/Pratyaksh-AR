@@ -53,8 +53,8 @@ We welcome contributions from the community to enhance Pratyaksh AR. Here's how 
 
 [Pratyaksh PPT](https://www.canva.com/design/DAFzNq912yc/LQ_OfxHv10MYXo2DzQd67w/edit?utm_content=DAFzNq912yc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-# 🗿 Contributors
+### 🗿 Contributors
 
-[@Mukund Solanki (Team Lead)](https://github.com/mukundsolanki)
+[@Mukund Solanki](https://github.com/mukundsolanki)
 [@Daksh Kitukale](https://github.com/K-Daksh)
 [@Gyaneshwar Chaudhary](https://github.com/gyaneshwarchoudhary)
